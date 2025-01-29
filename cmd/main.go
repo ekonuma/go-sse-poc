@@ -15,9 +15,9 @@ func main() {
 		panic(err)
 	}
 
-	go rabbitmq.Consume("mmessages", rabbitmqChannel, out)
+	go rabbitmq.Consume("messages", rabbitmqChannel, out)
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "html/index.html")
+		http.ServeFile(w, r, "res/index.html")
 	})
 	http.HandleFunc("/sse", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/event-stream")
